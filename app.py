@@ -43,10 +43,11 @@ def get_non_english():
     return (non_english.to_json())
 
 @app.route('/data/get/equal/catalogues/<column>/<value>', methods=['GET']) 
-def get_catalogues_equal(catalogues, column, value): 
-    mask = catalogues[column] == value
-    catalogues = catalogues[mask]
-    return (catalogues.to_json())
+def get_data_equal(catalogues, column, value):
+    data = catalogues 
+    mask = data[column] == value
+    data = data[mask]
+    return (data.to_json())
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000) 
