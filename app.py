@@ -13,7 +13,7 @@ english = catalogues[(catalogues['language_code'] == "eng") | (catalogues['langu
 (catalogues['language_code'] == "en-CA")]
 
 # get list of books published in non-english language
-nonenglish = catalogues[(catalogues['language_code'] != "eng") & (catalogues['language_code'] != "en-US") &  
+non_english = catalogues[(catalogues['language_code'] != "eng") & (catalogues['language_code'] != "en-US") &  
 (catalogues['language_code'] != "en-CA")]
 
 app = Flask(__name__) 
@@ -42,8 +42,8 @@ def get_english():
 def get_non_english(): 
     return (non_english.to_json())
 
-@app.route('/data/get/catalogues/<column>/<value>', methods=['GET']) 
-def get_data_catalogues(catalogues, column, value): 
+@app.route('/data/get/equal/catalogues/<column>/<value>', methods=['GET']) 
+def get_catalogues_equal(catalogues, column, value): 
     mask = catalogues[column] == value
     catalogues = catalogues[mask]
     return (catalogues.to_json())
